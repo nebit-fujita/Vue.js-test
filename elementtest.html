@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AT-UI Example</title>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/at-ui-style/css/at.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="l_form">
+      <at-steps :current='0' class="l_steps">
+        <at-step title="会員情報入力" description="会員情報をご入力ください"></at-step>
+        <at-step title="入力確認"></at-step>
+        <at-step title="仮登録完了"></at-step>
+        <at-step title="本登録完了"></at-step>
+      </at-steps>
+      <h4 class="m_h4">お客様情報のご入力</h4>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">お名前<at-tag color="error" class="ml_5">必須</at-tag></div>
+        <div :class="`col-md-19`">
+          <at-input size="large" placeholder="日高 聖子" v-model="name"></at-input>
+        </div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">電話番号</div>
+        <div :class="`col-md-19`">
+          <at-input v-model="tel" placeholder="03-1234-5678" size="large">
+            <template slot="prepend">
+              <i class="icon icon-phone"></i>
+            </template>
+          </at-input>
+        </div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">性別</div>
+        <div :class="`col-md-19`">
+          <at-radio-group v-model="sex" fill="#FF6464">
+            <at-radio-button label="woman">女性</at-radio-button>
+            <at-radio-button label="man">男性</at-radio-button>
+          </at-radio-group>
+        </div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">生年月日</div>
+        <div :class="`col-md-19`">
+          <at-select v-model="year" size="large" style="width: 100px">
+            <at-option v-for="e in 10" :value="e">{{e}}</at-option>
+          </at-select>
+          年
+          <at-select v-model="month" size="large" style="width: 100px">
+            <at-option v-for="e in 12" :value="e">{{e}}</at-option>
+          </at-select>
+          月
+          <at-select v-model="day" size="large" style="width: 100px">
+            <at-option v-for="e in 31" :value="e">{{e}}</at-option>
+          </at-select>
+          日
+        </div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">メールマガジン登録</div>
+        <div :class="`col-md-19`"><at-switch size="large" v-model="magazine"></at-switch></div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">メールアドレス</div>
+        <div :class="`col-md-19`">
+          <at-input v-model="email" placeholder="aaa@gmail.com" size="large">
+            <template slot="prepend">
+              <i class="icon icon-mail"></i>
+            </template>
+          </at-input>
+        </div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">パスワード<at-tag color="error" class="ml_5">必須</at-tag></div>
+        <div :class="`col-md-19`"><at-input size="large" placeholder="Large Size" v-model="password"></at-input></div>
+      </div>
+      <div class="row at-row no-gutter flex-middle mb_30">
+        <div :class="`col-md-5`">パスワード（確認用）<at-tag color="error" class="ml_5">必須</at-tag></div>
+        <div :class="`col-md-19`"><at-input size="large" placeholder="Large Size" v-model="password02"></at-input></div>
+      </div>
+      <div class="row at-row no-gutter flex-center">
+        <at-button @click="handleClick()" type="primary" size="large">会員登録</at-button>
+      </div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data:{
+        name:'',
+        tel:'',
+        sex:'woman',
+        year:1,
+        month:1,
+        day:1,
+        magazine:true,
+        email:'',
+        password:'',
+        password02:'',
+        tel:''
+      },
+      methods: {
+        handleClick () {
+          this.$Message.success('登録が完了しました')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

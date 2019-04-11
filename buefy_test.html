@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Buefy components goes here -->
+      <template>
+        <section>
+          <b-collapse :open="false" aria-id="contentIdForA11y1">
+            <button
+              class="button is-primary"
+              slot="trigger"
+              aria-controls="contentIdForA11y1"
+            >
+              Click me!
+            </button>
+            <div class="notification">
+              <div class="content">
+                <h3>
+                  Subtitle
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  <br />
+                  Nulla accumsan, metus ultrices eleifend gravida, nulla nunc
+                  varius lectus, nec rutrum justo nibh eu lectus. <br />
+                  Ut vulputate semper dui. Fusce erat odio, sollicitudin vel
+                  erat vel, interdum mattis neque.
+                </p>
+              </div>
+            </div>
+          </b-collapse>
+        </section>
+      </template>
+      <template>
+        <section>
+          <div class="field">
+            <b-checkbox>Basic</b-checkbox>
+          </div>
+          <div class="field">
+            <b-checkbox v-model="checkbox">
+              {{ checkbox }}
+            </b-checkbox>
+          </div>
+          <div class="field">
+            <b-checkbox
+              v-model="checkboxCustom"
+              true-value="Yes"
+              false-value="No"
+            >
+              {{ checkboxCustom }}
+            </b-checkbox>
+          </div>
+          <div class="field">
+            <b-checkbox :indeterminate="true">
+              Indeterminate
+            </b-checkbox>
+          </div>
+          <div class="field">
+            <b-checkbox disabled>Disabled</b-checkbox>
+          </div>
+        </section>
+      </template>
+      <template>
+        <section>
+          <b-field grouped group-multiline>
+            <div class="control">
+              <b-switch v-model="isBordered">Bordered</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isStriped">Striped</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isNarrowed">Narrowed</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isHoverable">Hoverable</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isFocusable">Focusable</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isLoading">Loading state</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="isEmpty">Empty</b-switch>
+            </div>
+            <div class="control">
+              <b-switch v-model="hasMobileCards"
+                >Mobile cards <small>(collapsed rows)</small></b-switch
+              >
+            </div>
+          </b-field>
+
+          <b-table
+            :data="isEmpty ? [] : data"
+            :bordered="isBordered"
+            :striped="isStriped"
+            :narrowed="isNarrowed"
+            :hoverable="isHoverable"
+            :loading="isLoading"
+            :focusable="isFocusable"
+            :mobile-cards="hasMobileCards"
+          >
+            <template slot-scope="props">
+              <b-table-column field="id" label="ID" width="40" numeric>
+                {{ props.row.id }}
+              </b-table-column>
+
+              <b-table-column field="first_name" label="First Name">
+                {{ props.row.first_name }}
+              </b-table-column>
+
+              <b-table-column field="last_name" label="Last Name">
+                {{ props.row.last_name }}
+              </b-table-column>
+
+              <b-table-column field="date" label="Date" centered>
+                <span class="tag is-success">
+                  {{ new Date(props.row.date).toLocaleDateString() }}
+                </span>
+              </b-table-column>
+
+              <b-table-column label="Gender">
+                <b-icon
+                  pack="fas"
+                  :icon="props.row.gender === 'Male' ? 'mars' : 'venus'"
+                >
+                </b-icon>
+                {{ props.row.gender }}
+              </b-table-column>
+            </template>
+
+            <template slot="empty">
+              <section class="section">
+                <div class="content has-text-grey has-text-centered">
+                  <p>
+                    <b-icon icon="emoticon-sad" size="is-large"> </b-icon>
+                  </p>
+                  <p>Nothing here.</p>
+                </div>
+              </section>
+            </template>
+          </b-table>
+        </section>
+      </template>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            checkbox: false,
+            checkboxCustom: "Yes",
+            isEmpty: false,
+            isBordered: false,
+            isStriped: false,
+            isNarrowed: false,
+            isHoverable: false,
+            isFocusable: false,
+            isLoading: false,
+            hasMobileCards: true,
+            data: [
+              {
+                id: 1,
+                first_name: "Jesse",
+                last_name: "Simmons",
+                date: "2016-10-15 13:43:27",
+                gender: "Male"
+              },
+              {
+                id: 2,
+                first_name: "John",
+                last_name: "Jacobs",
+                date: "2016-12-15 06:00:53",
+                gender: "Male"
+              },
+              {
+                id: 3,
+                first_name: "Tina",
+                last_name: "Gilbert",
+                date: "2016-04-26 06:26:28",
+                gender: "Female"
+              },
+              {
+                id: 4,
+                first_name: "Clarence",
+                last_name: "Flores",
+                date: "2016-04-10 10:28:46",
+                gender: "Male"
+              },
+              {
+                id: 5,
+                first_name: "Anne",
+                last_name: "Lee",
+                date: "2016-12-06 14:38:38",
+                gender: "Female"
+              }
+            ],
+            columns: [
+              {
+                field: "id",
+                label: "ID",
+                width: "40",
+                numeric: true
+              },
+              {
+                field: "first_name",
+                label: "First Name"
+              },
+              {
+                field: "last_name",
+                label: "Last Name"
+              },
+              {
+                field: "date",
+                label: "Date",
+                centered: true
+              },
+              {
+                field: "gender",
+                label: "Gender"
+              }
+            ]
+          };
+        }
+      });
+    </script>
+  </body>
+</html>

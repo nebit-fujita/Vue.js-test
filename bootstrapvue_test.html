@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-with, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8" />
+    <title>My first Bootstrap-Vue app</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <div>
+        <b-button>Button</b-button>
+        <b-button variant="danger">Button</b-button>
+        <b-button variant="success">Button</b-button>
+        <b-button variant="outline-primary">Button</b-button>
+      </div>
+      <template>
+        <div>
+          <b-table striped hover :items="items"></b-table>
+        </div>
+      </template>
+    </div>
+    <script src="//unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            items: [
+              { age: 40, first_name: "Dickerson", last_name: "Macdonald" ,adress:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+              { age: 21, first_name: "Larsen", last_name: "Shaw" },
+              { age: 89, first_name: "Geneva", last_name: "Wilson" },
+              { age: 38, first_name: "Jami", last_name: "Carney" }
+            ]
+          };
+        }
+      });
+    </script>
+  </body>
+</html>
